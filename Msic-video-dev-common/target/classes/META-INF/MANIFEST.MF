@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: Msic-video-dev-common
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: ASUS
+Implementation-Vendor-Id: com.Msic
+Build-Jdk: 1.8.0_201
+Implementation-URL: http://projects.spring.io/spring-boot/Msic-video-d
+ ev/Msic-video-dev-common/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
