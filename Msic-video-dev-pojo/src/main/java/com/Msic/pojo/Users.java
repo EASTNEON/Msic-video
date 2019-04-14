@@ -3,39 +3,65 @@ package com.Msic.pojo;
 import java.util.Date;
 import javax.persistence.*;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value="用户对象",description="这是用户对象")
 public class Users {
-    @Id
+    
+	//前端不一定要传入或显示
+	@ApiModelProperty(hidden=true)
+	@Id
     private String id;
 
-    @Column(name = "video_id")
-    private String videoId;
-
-    @Column(name = "from_user_id")
-    private String fromUserId;
-
-    @Column(name = "create_time")
-    private Date createTime;
-
+    /**
+     * 用户名
+     * */
+  //前端要传入和显示
+    @ApiModelProperty(value="用户名",name="username",example="cyjuser",required=true)
     private String username;
-
+    
+    /**
+     * 密码
+     * */
+    @ApiModelProperty(value="密码",name="password",example="123456",required=true)
     private String password;
 
+    /**
+     * 我的头像，如果没有默认给一张
+     * */
+    @ApiModelProperty(hidden=true)
     @Column(name = "face_image")
     private String faceImage;
 
+    /**
+     * 昵称
+     * */
+    @ApiModelProperty(hidden=true)
     private String nickname;
 
+    /**
+     * 我的粉丝数量
+     * */
+    @ApiModelProperty(hidden=true)
     @Column(name = "fans_count")
     private Integer fansCount;
 
+    /**
+     * 我关注的总人数
+     * */
+    @ApiModelProperty(hidden=true)
     @Column(name = "follow_counts")
     private Integer followCounts;
 
+    /**
+     * 我收到的赞美/收藏的数量
+     * */
+    @ApiModelProperty(hidden=true)
     @Column(name = "receive_like_counts")
     private Integer receiveLikeCounts;
 
-    private String comment;
-
+    
     /**
      * @return id
      */
@@ -50,47 +76,7 @@ public class Users {
         this.id = id;
     }
 
-    /**
-     * @return video_id
-     */
-    public String getVideoId() {
-        return videoId;
-    }
 
-    /**
-     * @param videoId
-     */
-    public void setVideoId(String videoId) {
-        this.videoId = videoId;
-    }
-
-    /**
-     * @return from_user_id
-     */
-    public String getFromUserId() {
-        return fromUserId;
-    }
-
-    /**
-     * @param fromUserId
-     */
-    public void setFromUserId(String fromUserId) {
-        this.fromUserId = fromUserId;
-    }
-
-    /**
-     * @return create_time
-     */
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    /**
-     * @param createTime
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 
     /**
      * @return username
@@ -190,17 +176,4 @@ public class Users {
         this.receiveLikeCounts = receiveLikeCounts;
     }
 
-    /**
-     * @return comment
-     */
-    public String getComment() {
-        return comment;
-    }
-
-    /**
-     * @param comment
-     */
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
 }

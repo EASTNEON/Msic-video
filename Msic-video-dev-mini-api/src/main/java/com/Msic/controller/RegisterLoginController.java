@@ -5,7 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Msic.pojo.Users;
@@ -13,15 +12,20 @@ import com.Msic.service.UserService;
 import com.Msic.utils.MD5Utils;
 import com.Msic.utils.MsicJSONResult;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 
 
 
 @RestController
+@Api(value="用户注册的接口",tags= {"注册和登录的controller"})
 public class RegisterLoginController {
 	
 	@Autowired
 	private UserService userService;
 	
+	@ApiOperation(value="用户登录",notes="用户注册的接口")
 	@PostMapping("/regist")
 	public MsicJSONResult regist(@RequestBody Users user) throws Exception{
 		
