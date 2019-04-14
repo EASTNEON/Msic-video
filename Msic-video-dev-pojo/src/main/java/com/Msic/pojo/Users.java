@@ -26,13 +26,13 @@ public class Users {
     private String nickname;
 
     @Column(name = "fans_count")
-    private String fansCount;
+    private Integer fansCount;
 
     @Column(name = "follow_counts")
-    private String followCounts;
+    private Integer followCounts;
 
     @Column(name = "receive_like_counts")
-    private String receiveLikeCounts;
+    private Integer receiveLikeCounts;
 
     private String comment;
 
@@ -151,42 +151,42 @@ public class Users {
     /**
      * @return fans_count
      */
-    public String getFansCount() {
+    public Integer getFansCount() {
         return fansCount;
     }
 
     /**
      * @param fansCount
      */
-    public void setFansCount(String fansCount) {
+    public void setFansCount(Integer fansCount) {
         this.fansCount = fansCount;
     }
 
     /**
      * @return follow_counts
      */
-    public String getFollowCounts() {
+    public Integer getFollowCounts() {
         return followCounts;
     }
 
     /**
      * @param followCounts
      */
-    public void setFollowCounts(String followCounts) {
+    public void setFollowCounts(Integer followCounts) {
         this.followCounts = followCounts;
     }
 
     /**
      * @return receive_like_counts
      */
-    public String getReceiveLikeCounts() {
+    public Integer getReceiveLikeCounts() {
         return receiveLikeCounts;
     }
 
     /**
      * @param receiveLikeCounts
      */
-    public void setReceiveLikeCounts(String receiveLikeCounts) {
+    public void setReceiveLikeCounts(Integer receiveLikeCounts) {
         this.receiveLikeCounts = receiveLikeCounts;
     }
 

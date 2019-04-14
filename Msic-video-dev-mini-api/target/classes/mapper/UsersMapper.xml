@@ -13,9 +13,9 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="face_image" jdbcType="VARCHAR" property="faceImage" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
-    <result column="fans_count" jdbcType="VARCHAR" property="fansCount" />
-    <result column="follow_counts" jdbcType="VARCHAR" property="followCounts" />
-    <result column="receive_like_counts" jdbcType="VARCHAR" property="receiveLikeCounts" />
+    <result column="fans_count" jdbcType="INTEGER" property="fansCount" />
+    <result column="follow_counts" jdbcType="INTEGER" property="followCounts" />
+    <result column="receive_like_counts" jdbcType="INTEGER" property="receiveLikeCounts" />
     <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
   </resultMap>
   <resultMap id="BaseResultMap" type="com.Msic.pojo.Users">
