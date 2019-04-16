@@ -1,13 +1,17 @@
 package com.Msic.controller;
 
 
+import java.util.UUID;
+
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Msic.pojo.Users;
+import com.Msic.pojo.vo.UsersVO;
 import com.Msic.service.UserService;
 import com.Msic.utils.MD5Utils;
 import com.Msic.utils.MsicJSONResult;
@@ -20,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @Api(value="用户注册的接口",tags= {"注册和登录的controller"})
-public class RegisterLoginController {
+public class RegisterLoginController extends BasicController{
 	
 	@Autowired
 	private UserService userService;
@@ -51,7 +55,29 @@ public class RegisterLoginController {
 		}
 		
 		user.setPassword("");
-		return MsicJSONResult.ok(user);
+		
+		/*
+		 * String uniqueToken = UUID.randomUUID().toString();
+		 * redis.set(USER_REDIS_SESSION + ":" + user.getId(), uniqueToken, 1000 * 60 *
+		 * 30);
+		 * 
+		 * UsersVO userVO = new UsersVO(); BeanUtils.copyProperties(user, userVO);
+		 * userVO.setUserToken(uniqueToken);
+		 */
+		
+		UsersVO userVO = setUserRedisSessionToken(user);
+		
+		return MsicJSONResult.ok(userVO);
+	}
+	
+	public UsersVO setUserRedisSessionToken(Users userModel) {
+		String uniqueToken = UUID.randomUUID().toString();
+		redis.set(USER_REDIS_SESSION + ":" + userModel.getId(), uniqueToken, 1000 * 60 * 30);
+		
+		UsersVO userVO = new UsersVO();
+		BeanUtils.copyProperties(userModel, userVO);
+		userVO.setUserToken(uniqueToken);
+		return userVO;
 	}
 	
 	@ApiOperation(value="用户登录",notes="用户登录的接口")
@@ -59,6 +85,8 @@ public class RegisterLoginController {
 	public MsicJSONResult login(@RequestBody Users user) throws Exception{
 		String username = user.getUsername();
 		String password = user.getPassword();
+		
+//		Thread.sleep(3000);
 		
 		//1.判断用户名和密码必须不为空
 		if(StringUtils.isBlank(user.getUsername())||StringUtils.isBlank(user.getPassword())){
@@ -72,7 +100,8 @@ public class RegisterLoginController {
 		//3.保存用户，注册信息
 		if(userResult != null) {
 			userResult.setPassword("");
-			return MsicJSONResult.ok(userResult);
+			UsersVO userVO = setUserRedisSessionToken(userResult);
+			return MsicJSONResult.ok(userVO);
 		}else {
 			return MsicJSONResult.errorMsg("用户名或密码不正确，请重试...");
 		}
