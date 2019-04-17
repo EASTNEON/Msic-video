@@ -285,5 +285,6 @@
 		<module>Msic-video-admin-pojo</module>
 		<module>Msic-video-admin-mapper</module>
 		<module>Msic-video-admin-service</module>
+		<module>Msic-video-admin-mng</module>
 	</modules>
 </project>
