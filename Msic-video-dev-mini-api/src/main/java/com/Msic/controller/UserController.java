@@ -7,6 +7,7 @@ import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import com.Msic.pojo.Users;
+import com.Msic.pojo.vo.UsersVO;
 import com.Msic.service.UserService;
 import com.Msic.utils.MsicJSONResult;
 
@@ -44,6 +46,9 @@ public class UserController extends BasicController{
 		//保存到数据库中的相对路径
 		String uploadPathDB = "/" + userId + "/face";
 		
+		if(StringUtils.isBlank(userId)) {
+			return MsicJSONResult.errorMsg("用户id不能为空...");
+		}
 
 		FileOutputStream fileOutputStream = null;
 		InputStream inputStream = null;
@@ -83,7 +88,31 @@ public class UserController extends BasicController{
 			}
 		}
 		
-		return MsicJSONResult.ok();
+		Users user = new Users();
+		user.setId(userId);
+		user.setFaceImage(uploadPathDB);
+		userService.updateUserInfo(user);
+		
+		return MsicJSONResult.ok(uploadPathDB);
+		
+	}
+	
+	@ApiOperation(value="查询用户信息",notes="查询用户信息")
+	@ApiImplicitParam(name="userId",value="用户id",required=true,dataType="String",paramType="query")
+	@PostMapping("/query")
+	public MsicJSONResult query(String userId) throws Exception{
+
+		
+		
+		if(StringUtils.isBlank(userId)) {
+			return MsicJSONResult.errorMsg("用户id不能为空...");
+		}
+
+		Users userInfo = userService.queryUserInfo(userId);
+		UsersVO usersVO = new UsersVO();
+		BeanUtils.copyProperties(userInfo, usersVO);
+		
+		return MsicJSONResult.ok(usersVO);
 		
 	}
 	

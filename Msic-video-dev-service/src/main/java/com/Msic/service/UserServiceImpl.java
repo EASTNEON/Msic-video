@@ -56,4 +56,27 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
+	@Transactional(propagation = Propagation.REQUIRED)
+	@Override
+	public void updateUserInfo(Users user) {
+		Example userExample = new Example(Users.class);
+		//通过Example创建Criteria(接口)，Criteria有andEqualTo，like，大于小于等方法
+		Criteria criteria = userExample.createCriteria();
+		criteria.andEqualTo("id", user.getId());
+		userMapper.updateByExampleSelective(user, userExample);
+	}
+
+	@Transactional(propagation = Propagation.SUPPORTS)
+	@Override
+	public Users queryUserInfo(String userId) {
+		
+		Example userExample = new Example(Users.class);
+		//通过Example创建Criteria(接口)，Criteria有andEqualTo，like，大于小于等方法
+		Criteria criteria = userExample.createCriteria();
+		criteria.andEqualTo("id", userId);
+		Users user = userMapper.selectOneByExample(userExample);
+		
+		return user;
+	}
+
 }

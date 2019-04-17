@@ -21,5 +21,14 @@ public interface UserService {
      */
 	public Users queryUserForLogin(String username, String password);
 	
+	/**
+     * @Description:用户修改信息
+     */
+	public void updateUserInfo(Users user) ;
+	
+	/**
+     * @Description:查询用户信息
+     */
+	public Users queryUserInfo(String userId);
 	
 }
