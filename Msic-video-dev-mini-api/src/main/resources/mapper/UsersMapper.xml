@@ -18,16 +18,5 @@
     <result column="receive_like_counts" jdbcType="INTEGER" property="receiveLikeCounts" />
     <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
   </resultMap>
-  <resultMap id="BaseResultMap" type="com.Msic.pojo.Users">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="VARCHAR" property="id" />
-  </resultMap>
-  <resultMap id="BaseResultMap" type="com.Msic.pojo.Users">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="VARCHAR" property="id" />
-  </resultMap>
+  
 </mapper>

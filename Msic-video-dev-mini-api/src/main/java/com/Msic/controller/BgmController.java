@@ -1,6 +1,7 @@
 package com.Msic.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/bgm")
 public class BgmController {
 	
+	@Autowired
 	private BgmService bgmService;
 	
 	@ApiOperation(value="获取背景音乐列表",notes="获取背景音乐列表的接口")
