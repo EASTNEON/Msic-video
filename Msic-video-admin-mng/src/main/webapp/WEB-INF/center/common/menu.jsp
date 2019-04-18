@@ -28,7 +28,7 @@
 					</a>
                	</li>
                	
-               	<!-- 用户管理 start -->
+               <%-- 	<!-- 用户管理 start -->
 				<li class="nav-item ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-user"></i>
@@ -42,7 +42,7 @@
                             </a>
                         </li>
                     </ul>
-               	</li>
+               	</li> --%>
                	
                	<!-- 背景音乐 start -->
 				<li class="nav-item ">
@@ -65,7 +65,7 @@
                     </ul>
                	</li>
                	
-               	<!-- 举报管理 start -->
+               	<%-- <!-- 举报管理 start -->
 				<li class="nav-item ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-notebook"></i>
@@ -79,7 +79,7 @@
                             </a>
                         </li>
                     </ul>
-               	</li>
+               	</li> --%>
                	
             </ul>
             <!-- END SIDEBAR MENU -->

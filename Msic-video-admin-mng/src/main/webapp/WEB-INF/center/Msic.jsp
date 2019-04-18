@@ -81,7 +81,7 @@
 	        
 	    </div>
 	    
-	    <div class="col-lg-6 col-xs-12 col-sm-12">
+	   <%--  <div class="col-lg-6 col-xs-12 col-sm-12">
 	        <div class="portlet light portlet-fit bordered">
 	            <div class="portlet-title">
 	                <div class="caption">
@@ -109,5 +109,5 @@
 	                </div>
 	            </div>
 	        </div>
-	    </div>
+	    </div> --%>
 	</div>
