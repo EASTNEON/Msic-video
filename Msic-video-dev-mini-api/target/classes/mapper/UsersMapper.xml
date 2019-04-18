@@ -6,6 +6,9 @@
       WARNING - @mbg.generated
     -->
     <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="video_id" jdbcType="VARCHAR" property="videoId" />
+    <result column="from_user_id" jdbcType="VARCHAR" property="fromUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="face_image" jdbcType="VARCHAR" property="faceImage" />
@@ -13,6 +16,18 @@
     <result column="fans_count" jdbcType="INTEGER" property="fansCount" />
     <result column="follow_counts" jdbcType="INTEGER" property="followCounts" />
     <result column="receive_like_counts" jdbcType="INTEGER" property="receiveLikeCounts" />
+    <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
   </resultMap>
-
+  <resultMap id="BaseResultMap" type="com.Msic.pojo.Users">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.Msic.pojo.Users">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+  </resultMap>
 </mapper>
