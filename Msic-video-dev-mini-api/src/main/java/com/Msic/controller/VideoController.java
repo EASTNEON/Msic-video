@@ -23,6 +23,7 @@ import com.Msic.service.VideoService;
 import com.Msic.utils.FetchVideoCover;
 import com.Msic.utils.MergeVideoMp3;
 import com.Msic.utils.MsicJSONResult;
+import com.Msic.utils.PagedResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -218,6 +219,18 @@ public class VideoController extends BasicController{
 		return MsicJSONResult.ok(videoId);	
 			
 			
+	}
+	
+	@PostMapping(value="/showAll")
+	public MsicJSONResult showAll(Integer page) throws Exception{
+		
+		if(page == null) {
+			page= 1;
+		}
+		
+		PagedResult result= videoService.getAllVideos(page, PAGE_SIZE);
+		
+		return MsicJSONResult.ok(result);
 	}
 	
 }

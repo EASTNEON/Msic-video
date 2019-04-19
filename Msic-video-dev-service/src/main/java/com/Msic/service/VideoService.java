@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.Msic.pojo.Bgm;
 import com.Msic.pojo.Videos;
+import com.Msic.utils.PagedResult;
 
 
 
@@ -23,5 +24,9 @@ public interface VideoService {
      */
 	public String updateVideo(String videoId, String coverPath); 
 
+	/**
+     * @Description:分页查询视频列表
+     */
+	public PagedResult getAllVideos(Integer page, Integer pageSize);
 	
 }
