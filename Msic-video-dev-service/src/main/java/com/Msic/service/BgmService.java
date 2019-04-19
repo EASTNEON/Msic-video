@@ -14,6 +14,10 @@ public interface BgmService {
      */
 	public List<Bgm> queryBgmList(); 
 	
+	/**
+     * @Description:根据id查询bgm信息
+     */
+	public Bgm queryBgmById(String bgmId); 
 
 	
 }
