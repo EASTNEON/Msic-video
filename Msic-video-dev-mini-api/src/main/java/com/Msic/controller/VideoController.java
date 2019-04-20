@@ -11,6 +11,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -221,16 +222,46 @@ public class VideoController extends BasicController{
 			
 	}
 	
+	/**
+	 * 
+	 * @Description:分页搜索查询视频列表
+	 * isSaveRecord:1 -需要保存
+	 * 				0 -不需要保存，或者为空的时候
+	 */
 	@PostMapping(value="/showAll")
-	public MsicJSONResult showAll(Integer page) throws Exception{
+	public MsicJSONResult showAll(@RequestBody Videos video, Integer isSaveRecord,Integer page) throws Exception{
 		
 		if(page == null) {
 			page= 1;
 		}
 		
-		PagedResult result= videoService.getAllVideos(page, PAGE_SIZE);
+		PagedResult result= videoService.getAllVideos(video, isSaveRecord, page, PAGE_SIZE);
 		
 		return MsicJSONResult.ok(result);
 	}
+	
+
+	@PostMapping(value="/hot")
+	public MsicJSONResult hot() throws Exception{
+		
+		
+		return MsicJSONResult.ok(videoService.getHotwords());
+	}
+	
+	@PostMapping(value="/userLike")
+	public MsicJSONResult userLike(String userId, String videoId, String videoCreaterId) throws Exception{
+		
+		videoService.userLikeVideo(userId, videoId, videoCreaterId);
+		System.out.println(videoId + "1");
+		return MsicJSONResult.ok();
+	}
+	
+	@PostMapping(value="/userUnLike")
+	public MsicJSONResult userUnLike(String userId, String videoId, String videoCreaterId) throws Exception{
+		
+		videoService.userUnLikeVideo(userId, videoId, videoCreaterId);
+		return MsicJSONResult.ok();
+	}
+	
 	
 }

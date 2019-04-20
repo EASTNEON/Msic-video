@@ -10,6 +10,7 @@ D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main
 D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main\java\com\Msic\enums\VideoStatusEnum.java
 D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main\java\org\n3r\idworker\RandomCodeStrategy.java
 D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main\java\org\n3r\idworker\InvalidSystemClock.java
+D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main\java\com\Msic\utils\PagedResult.java
 D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main\java\org\n3r\idworker\utils\HttpReq.java
 D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main\java\org\n3r\idworker\utils\Ip.java
 D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main\java\org\n3r\idworker\WorkerIdStrategy.java
@@ -24,4 +25,5 @@ D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main
 D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main\java\org\n3r\idworker\DayCode.java
 D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main\java\org\n3r\idworker\strategy\FileLock.java
 D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main\java\com\Msic\utils\FetchVideoCover.java
+D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main\java\com\Msic\utils\JsonUtils.java
 D:\Program Files\eclipse\workspace\Msic-video-dev\Msic-video-dev-common\src\main\java\org\n3r\idworker\utils\IPv4Utils.java

@@ -27,6 +27,20 @@ public interface VideoService {
 	/**
      * @Description:分页查询视频列表
      */
-	public PagedResult getAllVideos(Integer page, Integer pageSize);
+	public PagedResult getAllVideos(Videos video, Integer isSaveRecord,Integer page, Integer pageSize);
 	
+	/**
+     * @Description:获取热搜词列表
+     */
+	public List<String> getHotwords();
+	
+	/**
+     * @Description: 用户喜欢/点赞视频
+     */
+	public void userLikeVideo(String userId, String videoId, String videoCreaterId);
+	
+	/**
+     * @Description: 用户不喜欢/取消点赞视频
+     */
+	public void userUnLikeVideo(String userId, String videoId, String videoCreaterId);
 }
