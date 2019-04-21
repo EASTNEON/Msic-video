@@ -229,17 +229,64 @@ public class VideoController extends BasicController{
 	 * 				0 -不需要保存，或者为空的时候
 	 */
 	@PostMapping(value="/showAll")
-	public MsicJSONResult showAll(@RequestBody Videos video, Integer isSaveRecord,Integer page) throws Exception{
+	public MsicJSONResult showAll(@RequestBody Videos video, Integer isSaveRecord,Integer page, Integer pageSize) throws Exception{
 		
 		if(page == null) {
 			page= 1;
 		}
 		
-		PagedResult result= videoService.getAllVideos(video, isSaveRecord, page, PAGE_SIZE);
+		if (pageSize == null) {
+			pageSize = PAGE_SIZE;
+		}
+		
+		PagedResult result= videoService.getAllVideos(video, isSaveRecord, page, pageSize);
 		
 		return MsicJSONResult.ok(result);
 	}
 	
+	/**
+	 * @Description: 我关注的人发的视频
+	 */
+	@PostMapping("/showMyFollow")
+	public MsicJSONResult showMyFollow(String userId, Integer page) throws Exception {
+		
+		if (StringUtils.isBlank(userId)) {
+			return MsicJSONResult.ok();
+		}
+		
+		if (page == null) {
+			page = 1;
+		}
+
+		int pageSize = 6;
+		
+		PagedResult videosList = videoService.queryMyFollowVideos(userId, page, pageSize);
+		
+		return MsicJSONResult.ok(videosList);
+	}
+	
+	/**
+	 * @Description: 我收藏(点赞)过的视频列表
+	 */
+	@PostMapping("/showMyLike")
+	public MsicJSONResult showMyLike(String userId, Integer page, Integer pageSize) throws Exception {
+		
+		if (StringUtils.isBlank(userId)) {
+			return MsicJSONResult.ok();
+		}
+		
+		if (page == null) {
+			page = 1;
+		}
+
+		if (pageSize == null) {
+			pageSize = 6;
+		}
+		
+		PagedResult videosList = videoService.queryMyLikeVideos(userId, page, pageSize);
+		
+		return MsicJSONResult.ok(videosList);
+	}
 
 	@PostMapping(value="/hot")
 	public MsicJSONResult hot() throws Exception{
@@ -252,7 +299,6 @@ public class VideoController extends BasicController{
 	public MsicJSONResult userLike(String userId, String videoId, String videoCreaterId) throws Exception{
 		
 		videoService.userLikeVideo(userId, videoId, videoCreaterId);
-		System.out.println(videoId + "1");
 		return MsicJSONResult.ok();
 	}
 	

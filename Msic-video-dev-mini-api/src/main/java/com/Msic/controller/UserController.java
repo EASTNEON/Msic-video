@@ -10,12 +10,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.Msic.pojo.Users;
+import com.Msic.pojo.UsersReport;
+import com.Msic.pojo.vo.PublisherVideo;
 import com.Msic.pojo.vo.UsersVO;
 import com.Msic.service.UserService;
 import com.Msic.utils.MsicJSONResult;
@@ -100,7 +103,7 @@ public class UserController extends BasicController{
 	@ApiOperation(value="查询用户信息",notes="查询用户信息")
 	@ApiImplicitParam(name="userId",value="用户id",required=true,dataType="String",paramType="query")
 	@PostMapping("/query")
-	public MsicJSONResult query(String userId) throws Exception{
+	public MsicJSONResult query(String userId , String fanId) throws Exception{
 
 		
 		
@@ -112,8 +115,76 @@ public class UserController extends BasicController{
 		UsersVO usersVO = new UsersVO();
 		BeanUtils.copyProperties(userInfo, usersVO);
 		
+		
+		usersVO.setFollow(userService.queryIfFollow(userId, fanId));
+		
 		return MsicJSONResult.ok(usersVO);
 		
 	}
 	
+	@PostMapping("/queryPublisher")
+	public MsicJSONResult queryPublisher(String loginUserId, String videoId, String publishUserId) throws Exception{
+
+		
+		
+		if(StringUtils.isBlank(publishUserId)) {
+			return MsicJSONResult.errorMsg("");
+		}
+
+		// 1.查询视频发布者的信息
+		Users userInfo = userService.queryUserInfo(publishUserId);
+		UsersVO publisher = new UsersVO();
+		BeanUtils.copyProperties(userInfo, publisher);
+		
+		
+		// 2.查询当前登陆者和视频的点赞关系
+		boolean usersLikeVideo = userService.isUserLikeVideo(loginUserId, videoId);
+		
+		PublisherVideo bean = new PublisherVideo();
+		bean.setPublisher(publisher);
+		bean.setUserLikeVideo(usersLikeVideo);
+		
+		return MsicJSONResult.ok(bean);
+		
+	}
+	
+	
+	@PostMapping("/beyourfans")
+	public MsicJSONResult beyourfans(String userId, String fanId) throws Exception{
+
+		
+		
+		if(StringUtils.isBlank(userId) || StringUtils.isBlank(fanId)) {
+			return MsicJSONResult.errorMsg("");
+		}
+
+		userService.saveUserFanRelation(userId, fanId);
+		
+		return MsicJSONResult.ok("关注成功！");
+		
+	}
+	
+	@PostMapping("/dontbeyourfans")
+	public MsicJSONResult dontbeyourfans(String userId, String fanId) throws Exception{
+
+		
+		
+		if(StringUtils.isBlank(userId) || StringUtils.isBlank(fanId)) {
+			return MsicJSONResult.errorMsg("");
+		}
+
+		userService.deleteUserFanRelation(userId, fanId);
+		
+		return MsicJSONResult.ok("取消关注成功！");
+		
+	}
+	
+	@PostMapping("/reportUser")
+	public MsicJSONResult reportUser(@RequestBody UsersReport usersReport) throws Exception {
+		
+		// 保存举报信息
+		userService.reportUser(usersReport);
+		
+		return MsicJSONResult.errorMsg("举报成功...有你平台变得更美好...");
+	}
 }

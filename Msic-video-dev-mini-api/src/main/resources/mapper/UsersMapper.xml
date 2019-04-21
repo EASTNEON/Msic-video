@@ -27,4 +27,21 @@
   	update users set receive_like_counts = receive_like_counts - 1 where id = #{userId}
   </update>
   
+  <update id="addFansCount" parameterType="String">
+  	update users set fans_count = fans_count + 1 where id = #{userId}
+  </update>
+  
+  <update id="reduceFansCount" parameterType="String">
+  	update users set fans_count = fans_count - 1 where id = #{userId}
+  </update>
+  
+  <update id="addFollowersCount" parameterType="String">
+  	update users set follow_counts = follow_counts + 1 where id = #{userId}
+  </update>
+  
+  <update id="reduceFollowersCount" parameterType="String">
+  	update users set follow_counts = follow_counts - 1 where id = #{userId}
+  </update>
+  
+  
 </mapper>
