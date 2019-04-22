@@ -6,6 +6,12 @@ import javax.persistence.*;
 public class Comments {
     @Id
     private String id;
+    
+	@Column(name = "father_comment_id")
+    private String fatherCommentId;
+
+    @Column(name = "to_user_id")
+    private String toUserId;
 
     @Column(name = "video_id")
     private String videoId;
@@ -87,4 +93,20 @@ public class Comments {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+    
+    public String getFatherCommentId() {
+		return fatherCommentId;
+	}
+
+	public void setFatherCommentId(String fatherCommentId) {
+		this.fatherCommentId = fatherCommentId;
+	}
+
+	public String getToUserId() {
+		return toUserId;
+	}
+
+	public void setToUserId(String toUserId) {
+		this.toUserId = toUserId;
+	}
 }

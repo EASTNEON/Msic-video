@@ -4,6 +4,7 @@ package com.Msic.service;
 import java.util.List;
 
 import com.Msic.pojo.Bgm;
+import com.Msic.pojo.Comments;
 import com.Msic.pojo.Videos;
 import com.Msic.utils.PagedResult;
 
@@ -53,4 +54,14 @@ public interface VideoService {
      * @Description: 用户不喜欢/取消点赞视频
      */
 	public void userUnLikeVideo(String userId, String videoId, String videoCreaterId);
+	
+	/**
+	 * @Description: 用户留言
+	 */
+	public void saveComment(Comments comment);
+	
+	/**
+	 * @Description: 留言分页
+	 */
+	public PagedResult getAllComments(String videoId, Integer page, Integer pageSize);
 }

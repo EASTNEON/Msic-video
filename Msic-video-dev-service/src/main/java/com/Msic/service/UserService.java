@@ -1,5 +1,6 @@
 package com.Msic.service;
 
+import com.Msic.pojo.Comments;
 import com.Msic.pojo.Users;
 import com.Msic.pojo.UsersReport;
 
@@ -57,5 +58,7 @@ public interface UserService {
 	 * @Description: 举报用户
 	 */
 	public void reportUser(UsersReport userReport);
+	
+	
 	
 }

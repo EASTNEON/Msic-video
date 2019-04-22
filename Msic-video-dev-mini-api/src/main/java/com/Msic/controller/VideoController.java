@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.Msic.enums.VideoStatusEnum;
 import com.Msic.pojo.Bgm;
+import com.Msic.pojo.Comments;
 import com.Msic.pojo.Videos;
 import com.Msic.service.BgmService;
 import com.Msic.service.VideoService;
@@ -307,6 +308,38 @@ public class VideoController extends BasicController{
 		
 		videoService.userUnLikeVideo(userId, videoId, videoCreaterId);
 		return MsicJSONResult.ok();
+	}
+	
+	@PostMapping("/saveComment")
+	public MsicJSONResult saveComment(@RequestBody Comments comment, 
+			String fatherCommentId, String toUserId) throws Exception {
+		
+		comment.setFatherCommentId(fatherCommentId);
+		comment.setToUserId(toUserId);
+		
+		videoService.saveComment(comment);
+		return MsicJSONResult.ok();
+	}
+	
+	@PostMapping("/getVideoComments")
+	public MsicJSONResult getVideoComments(String videoId, Integer page, Integer pageSize) throws Exception {
+		
+		if (StringUtils.isBlank(videoId)) {
+			return MsicJSONResult.ok();
+		}
+		
+		// 分页查询视频列表，时间顺序倒序排序
+		if (page == null) {
+			page = 1;
+		}
+
+		if (pageSize == null) {
+			pageSize = 10;
+		}
+		
+		PagedResult list = videoService.getAllComments(videoId, page, pageSize);
+		
+		return MsicJSONResult.ok(list);
 	}
 	
 	

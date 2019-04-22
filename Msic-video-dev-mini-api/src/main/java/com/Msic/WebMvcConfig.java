@@ -29,7 +29,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(miniInterceptor())
 		.addPathPatterns("/user/**")
 		.addPathPatterns("/bgm/**")
-		.addPathPatterns("/video/upload","/video/uploadCover","/video/userLike","/video/userUnLike")
+		.addPathPatterns("/video/upload","/video/uploadCover","/video/userLike","/video/userUnLike","/video/saveComment")
 		.excludePathPatterns("/user/queryPublisher");
 		
 		super.addInterceptors(registry);

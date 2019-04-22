@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.Msic.mapper.CommentsMapper;
 import com.Msic.mapper.UsersFansMapper;
 import com.Msic.mapper.UsersLikeVideoMapper;
 import com.Msic.mapper.UsersMapper;
 import com.Msic.mapper.UsersReportMapper;
+import com.Msic.pojo.Comments;
 import com.Msic.pojo.Users;
 import com.Msic.pojo.UsersFans;
 import com.Msic.pojo.UsersLikeVideo;
@@ -35,6 +37,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UsersLikeVideoMapper usersLikeVideoMapper;
+	
+	
 	
 	@Autowired
 	private Sid sid;
@@ -187,5 +191,7 @@ public class UserServiceImpl implements UserService {
 		
 		usersReportMapper.insert(userReport);
 	}
+
+	
 	
 }
